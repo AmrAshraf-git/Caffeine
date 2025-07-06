@@ -6,6 +6,7 @@ data class CaffeineColor(
     val primary: Color,
     val secondary: Color,
     val primaryVariant: Color,
+    val onSecondary : Color,
     val disable: Color,
     val surface: Color,
     val stroke: Color,

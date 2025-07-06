@@ -48,9 +48,8 @@ val defaultTextStyle: CaffeineTextStyle = CaffeineTextStyle(
     ), title = SizedTextStyle(
         large = TextStyle(
             fontSize = 20.sp,
-            fontWeight = FontWeight.SemiBold,
-            fontFamily = sniglet,
-            lineHeight = 30.sp,
+            fontWeight = FontWeight.Bold,
+            fontFamily = urbanist,
         ), medium = TextStyle(
             fontSize = 18.sp,
             fontWeight = FontWeight.SemiBold,
@@ -66,35 +65,31 @@ val defaultTextStyle: CaffeineTextStyle = CaffeineTextStyle(
         large = TextStyle(
             fontSize = 18.sp,
             fontWeight = FontWeight.Normal,
-            fontFamily = sniglet,
+            fontFamily = urbanist,
             lineHeight = 28.sp,
         ), medium = TextStyle(
             fontSize = 16.sp,
             fontWeight = FontWeight.Normal,
-            fontFamily = sniglet,
-            lineHeight = 24.sp,
+            fontFamily = urbanist,
+
         ), small = TextStyle(
             fontSize = 14.sp,
             fontWeight = FontWeight.Normal,
-            fontFamily = sniglet,
-            lineHeight = 22.sp,
+            fontFamily = urbanist,
         )
     ), label = SizedTextStyle(
         large = TextStyle(
             fontSize = 16.sp,
-            fontWeight = FontWeight.Medium,
-            fontFamily = sniglet,
-            lineHeight = 24.sp,
+            fontWeight = FontWeight.Bold,
+            fontFamily = urbanist,
         ), medium = TextStyle(
             fontSize = 14.sp,
             fontWeight = FontWeight.Medium,
-            fontFamily = sniglet,
-            lineHeight = 22.sp,
+            fontFamily = urbanist,
         ), small = TextStyle(
             fontSize = 10.sp,
-            fontWeight = FontWeight.Medium,
-            fontFamily = sniglet,
-            lineHeight = 16.sp,
+            fontWeight = FontWeight.Normal,
+            fontFamily = urbanist,
         )
     )
 )

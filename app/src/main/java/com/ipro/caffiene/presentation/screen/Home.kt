@@ -17,14 +17,15 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.foundation.layout.statusBars
+import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -36,6 +37,8 @@ import androidx.compose.ui.util.lerp
 import com.ipro.caffiene.R
 import com.ipro.caffiene.designsystem.theme.CaffeineTheme
 import com.ipro.caffiene.designsystem.theme.Theme
+import com.ipro.caffiene.presentation.composable.MyButton
+import com.ipro.caffiene.presentation.composable.Header
 
 @Composable
 fun HomeScreen() {
@@ -66,71 +69,106 @@ fun AnimatedGhostWithSparkles() {
     val shadowAlpha = lerp(1f, 0.05f, animationProgress)
 
     Column(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.Start,
+        verticalArrangement = Arrangement.Top,
         modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight()
-            .padding(10.dp)
+            .statusBarsPadding()
+            .padding(16.dp)
     ) {
-        // Sparkles + Text
-        SparklingText(animationProgress = animationProgress)
+        Header()
 
         Spacer(modifier = Modifier.height(24.dp))
 
-        Image(
-            painter = painterResource(id = R.drawable.ghost_with_coffee),
-            contentDescription = "Ghost",
-            modifier = Modifier
-                .size(200.dp)
-                .offset(y = ghostOffsetY)
-        )
+        SparklingText(animationProgress = animationProgress, modifier = Modifier.fillMaxWidth())
 
-        Image(
-            painter = painterResource(id = R.drawable.ghost_shadow),
-            contentDescription = "Shadow",
-            modifier = Modifier
-                .size(width = 200.dp, height = 80.dp)
-                .offset(y = shadowOffsetY)
-                .graphicsLayer {
-                    alpha = shadowAlpha
-                }
-        )
-    }
+        Spacer(modifier = Modifier.height((33).dp))
 
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
 
-}
-@Composable
-fun SparklingText(animationProgress: Float) {
-    Box(contentAlignment = Alignment.Center) {
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Text("Hocus", style = Theme.textStyle.title.medium)
-            Text("Pocus", style = MaterialTheme.typography.headlineMedium)
-            Text("I Need Coffee", style = MaterialTheme.typography.headlineMedium)
-            Text("to Focus", style = MaterialTheme.typography.headlineMedium)
+            Image(
+                painter = painterResource(id = R.drawable.ghost_with_coffee),
+                contentDescription = "Ghost",
+                modifier = Modifier
+                    .size(200.dp)
+                    .offset(y = ghostOffsetY),
+                colorFilter = androidx.compose.ui.graphics.ColorFilter.tint(Theme.color.stroke)
+            )
+
+            Image(
+                painter = painterResource(id = R.drawable.ghost_shadow),
+                contentDescription = "Shadow",
+                modifier = Modifier
+                    .size(width = 200.dp, height = 80.dp)
+                    .offset(y = shadowOffsetY)
+                    .graphicsLayer {
+                        alpha = shadowAlpha
+                    },
+                colorFilter = androidx.compose.ui.graphics.ColorFilter.tint(Theme.color.stroke)
+            )
         }
 
-        // ✻ Sparkles fading in and out with ghost
-        Sparkle(offsetX = -100.dp, offsetY = -80.dp, alpha = animationProgress)
-        Sparkle(offsetX = 90.dp, offsetY = -60.dp, alpha = 1 - animationProgress)
-        Sparkle(offsetX = -60.dp, offsetY = 60.dp, alpha = animationProgress)
+        Box(contentAlignment = Alignment.BottomCenter,
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f)
+                .padding(bottom = 50.dp)) {
+            MyButton(text = "bring my coffee", suffixIcon = R.drawable.ic_coffee)
+        }
+
+    }
+
+
+}
+
+@Composable
+fun SparklingText(modifier: Modifier = Modifier, animationProgress: Float) {
+    Box(modifier = modifier, contentAlignment = Alignment.Center) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Text("Hocus", style = Theme.textStyle.body.large.copy(fontSize = 32.sp))
+            Text("Pocus", style = Theme.textStyle.body.large.copy(fontSize = 32.sp))
+            Text("I Need Coffee", style = Theme.textStyle.body.large.copy(fontSize = 32.sp))
+            Text("to Focus", style = Theme.textStyle.body.large.copy(fontSize = 32.sp))
+        }
+        Sparkle(
+            modifier = Modifier.align(Alignment.TopStart),
+            offsetX = (254).dp,
+            offsetY = (0).dp,
+            alpha = animationProgress
+        )
+        Sparkle(
+            modifier = Modifier.align(Alignment.TopStart),
+            offsetX = (91).dp,
+            offsetY = (193 - 140).dp,
+            alpha = 1 - animationProgress
+        )
+        Sparkle(
+            modifier = Modifier.align(Alignment.TopStart),
+            offsetX = (268).dp,
+            offsetY = (314 - 168).dp,
+            alpha = animationProgress
+        )
     }
 }
 
 @Composable
-fun Sparkle(offsetX: Dp, offsetY: Dp, alpha: Float) {
-    Text(
-        text = "✻",
-        fontSize = 14.sp,
-        modifier = Modifier
+fun Sparkle(modifier: Modifier = Modifier, offsetX: Dp, offsetY: Dp, alpha: Float) {
+    Icon(
+        painter = painterResource(id = R.drawable.sparkle_star),
+        contentDescription = "Sparkles",
+        modifier = modifier
             .offset(x = offsetX, y = offsetY)
             .alpha(alpha),
-        color = Color.Gray
+        tint = Theme.color.textColors.onPrimaryBody,
     )
 }
 
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, widthDp = 360, heightDp = 800)
 @Composable
 fun HomeScreenPreview() {
     CaffeineTheme {

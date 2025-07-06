@@ -10,6 +10,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.ipro.caffiene.designsystem.theme.CaffeineTheme
+import com.ipro.caffiene.designsystem.theme.Theme
+import com.ipro.caffiene.presentation.screen.CoffeeTypeScreen
 import com.ipro.caffiene.presentation.screen.HomeScreen
 
 class MainActivity : ComponentActivity() {
@@ -18,8 +20,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             CaffeineTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    HomeScreen()
+                Scaffold(modifier = Modifier.fillMaxSize(),) { innerPadding ->
+                    //HomeScreen()
+                    CoffeeTypeScreen()
                 }
             }
         }

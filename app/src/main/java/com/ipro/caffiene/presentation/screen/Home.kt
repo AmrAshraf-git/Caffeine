@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -38,7 +37,7 @@ import com.ipro.caffiene.R
 import com.ipro.caffiene.designsystem.theme.CaffeineTheme
 import com.ipro.caffiene.designsystem.theme.Theme
 import com.ipro.caffiene.presentation.composable.MyButton
-import com.ipro.caffiene.presentation.composable.Header
+import com.ipro.caffiene.presentation.composable.MyAppBar
 
 @Composable
 fun HomeScreen() {
@@ -77,7 +76,7 @@ fun AnimatedGhostWithSparkles() {
             .statusBarsPadding()
             .padding(16.dp)
     ) {
-        Header()
+        MyAppBar()
 
         Spacer(modifier = Modifier.height(24.dp))
 

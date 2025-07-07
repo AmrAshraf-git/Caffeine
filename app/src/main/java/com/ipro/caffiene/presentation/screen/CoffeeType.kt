@@ -35,7 +35,7 @@ import androidx.compose.ui.util.lerp
 import com.ipro.caffiene.R
 import com.ipro.caffiene.designsystem.theme.CaffeineTheme
 import com.ipro.caffiene.designsystem.theme.Theme
-import com.ipro.caffiene.presentation.composable.Header
+import com.ipro.caffiene.presentation.composable.MyAppBar
 import com.ipro.caffiene.presentation.composable.MyButton
 import com.ipro.caffiene.presentation.model.Coffee
 import kotlinx.coroutines.launch
@@ -75,7 +75,7 @@ fun CoffeeTypeContent(coffeeList: List<Coffee>) {
     ) {
 
         Column(modifier = Modifier.padding(16.dp)) {
-            Header(modifier = Modifier.padding(bottom = 16.dp))
+            MyAppBar(modifier = Modifier.padding(bottom = 16.dp))
             Title()
         }
 

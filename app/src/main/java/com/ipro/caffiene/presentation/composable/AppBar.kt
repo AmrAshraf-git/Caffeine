@@ -15,7 +15,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -25,7 +24,7 @@ import com.ipro.caffiene.designsystem.theme.Theme
 
 
 @Composable
-fun Header(modifier: Modifier = Modifier, onSuffixClick: () -> Unit = {}) {
+fun MyAppBar(modifier: Modifier = Modifier, onSuffixClick: () -> Unit = {}) {
     Row(horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier.fillMaxWidth()) {
@@ -46,13 +45,13 @@ fun Header(modifier: Modifier = Modifier, onSuffixClick: () -> Unit = {}) {
 @Composable
 fun HeaderDarkModePreview() {
     CaffeineTheme {
-        Header()
+        MyAppBar()
     }
 }
 @Preview(name = "Light Theme", showBackground = true, uiMode = android.content.res.Configuration.UI_MODE_NIGHT_NO)
 @Composable
 fun HeaderLightModePreview() {
     CaffeineTheme {
-        Header()
+        MyAppBar()
     }
 }

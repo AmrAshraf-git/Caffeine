@@ -10,7 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.ipro.caffiene.designsystem.theme.CaffeineTheme
-import com.ipro.caffiene.presentation.screen.CoffeeSizeScreen
+import com.ipro.caffiene.presentation.screen.CoffeeLoadingScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +20,7 @@ class MainActivity : ComponentActivity() {
             CaffeineTheme {
                 Scaffold(modifier = Modifier.fillMaxSize(),) { innerPadding ->
                     //HomeScreen()
-                    CoffeeSizeScreen()
+                    CoffeeLoadingScreen()
                 }
             }
         }

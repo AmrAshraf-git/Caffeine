@@ -32,7 +32,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.ipro.caffiene.designsystem.theme.Theme
 
 @Composable
-fun SizePicker(
+fun CoffeeSlider(
     modifier: Modifier = Modifier,
     initialSizeIndex: Int = 0,
     sizeOptions: List<SizeOption>,
@@ -131,7 +131,7 @@ fun MySliderPreview() {
 //        //println("Selected size: $selectedSize")
 //    }
     // Preview with icon options (uncomment to test)
-     SizePicker(
+     CoffeeSlider(
          initialSizeIndex = 0,
          sizeOptions = iconOptions
      ) { selectedSize ->

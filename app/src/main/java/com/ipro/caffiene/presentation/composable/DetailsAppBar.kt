@@ -1,5 +1,6 @@
 package com.ipro.caffiene.presentation.composable
 
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -20,27 +21,33 @@ import com.ipro.caffiene.R
 import com.ipro.caffiene.designsystem.theme.Theme
 
 @Composable
-fun DetailsAppBar(modifier: Modifier = Modifier,onBackClick: () -> Unit = {},) {
+fun DetailsAppBar(modifier: Modifier = Modifier,
+                  onBackClick: () -> Unit = {},
+                  isTitled: Boolean=true,
+                  title: String?=null,
+                  @DrawableRes iconRes:Int) {
     Row(horizontalArrangement = Arrangement.spacedBy(12.dp),
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier.fillMaxWidth()
     ) {
             IconButton(onClick = onBackClick,
                 Modifier.background(color = Theme.color.iconBackground, CircleShape)) {
-                Icon(imageVector = ImageVector.vectorResource(R.drawable.ic_arrow_left),
+                Icon(imageVector = ImageVector.vectorResource(iconRes),
                     contentDescription = "Add", tint = Theme.color.textColors.onPrimaryBody)
             }
 
-
-        Text(text = "Macchiato",
-            style = Theme.textStyle.title.large.copy(fontSize = 24.sp),
-            color = Theme.color.textColors.onPrimaryBody
-        )
+        if(isTitled) {
+            Text(
+                text = title?:"title",
+                style = Theme.textStyle.title.large.copy(fontSize = 24.sp),
+                color = Theme.color.textColors.onPrimaryBody
+            )
+        }
     }
 }
 
 @Preview(showBackground = true,)
 @Composable
 fun DetailsAppBarPrev(modifier: Modifier = Modifier) {
-    DetailsAppBar()
+    DetailsAppBar(isTitled = true, iconRes = R.drawable.ic_arrow_left)
 }

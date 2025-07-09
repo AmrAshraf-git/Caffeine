@@ -36,7 +36,7 @@ import androidx.compose.ui.util.lerp
 import com.ipro.caffiene.R
 import com.ipro.caffiene.designsystem.theme.CaffeineTheme
 import com.ipro.caffiene.designsystem.theme.Theme
-import com.ipro.caffiene.presentation.composable.MyButton
+import com.ipro.caffiene.presentation.composable.CoffeeButton
 import com.ipro.caffiene.presentation.composable.MyAppBar
 
 @Composable
@@ -116,7 +116,7 @@ fun AnimatedGhostWithSparkles() {
                 .fillMaxWidth()
                 .weight(1f)
                 .padding(bottom = 50.dp)) {
-            MyButton(text = "bring my coffee", suffixIcon = R.drawable.ic_coffee)
+            CoffeeButton(text = "bring my coffee", suffixIcon = R.drawable.ic_coffee)
         }
 
     }

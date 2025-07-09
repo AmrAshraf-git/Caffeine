@@ -55,7 +55,7 @@ fun CoffeeLoadingContent(modifier: Modifier = Modifier) {
     ) {
 
         Box(modifier = Modifier.padding(horizontal = 16.dp,),) {
-            DetailsAppBar()
+            DetailsAppBar(iconRes = R.drawable.ic_arrow_left, title = "Macchiato")
         }
 
         Box(

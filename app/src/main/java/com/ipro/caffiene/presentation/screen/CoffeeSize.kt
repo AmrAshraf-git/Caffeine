@@ -30,9 +30,9 @@ import androidx.compose.ui.unit.dp
 import com.ipro.caffiene.R
 import com.ipro.caffiene.designsystem.theme.Theme
 import com.ipro.caffiene.presentation.composable.DetailsAppBar
-import com.ipro.caffiene.presentation.composable.MyButton
+import com.ipro.caffiene.presentation.composable.CoffeeButton
 import com.ipro.caffiene.presentation.composable.SizeOption
-import com.ipro.caffiene.presentation.composable.SizePicker
+import com.ipro.caffiene.presentation.composable.CoffeeSlider
 import androidx.compose.animation.core.Animatable
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.graphicsLayer
@@ -92,7 +92,7 @@ fun CoffeeSizeContent(modifier: Modifier = Modifier) {
             .padding(horizontal = 16.dp,),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        DetailsAppBar()
+        DetailsAppBar(iconRes = R.drawable.ic_arrow_left, title = "Macchiato")
 
         Box(
             modifier = modifier
@@ -128,7 +128,7 @@ fun CoffeeSizeContent(modifier: Modifier = Modifier) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.width(160.dp)) {
-            SizePicker(sizeOptions = textOptions,
+            CoffeeSlider(sizeOptions = textOptions,
                 initialSizeIndex = selectedSizeIdx,
                 onSizeSelected = {
                         idx -> selectedSizeIdx = idx
@@ -136,7 +136,7 @@ fun CoffeeSizeContent(modifier: Modifier = Modifier) {
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            SizePicker(sizeOptions = iconOptions,
+            CoffeeSlider(sizeOptions = iconOptions,
                 onSizeSelected = {
                     idx -> selectedRostIdx = idx
                     animationToken = idx
@@ -159,13 +159,14 @@ fun CoffeeSizeContent(modifier: Modifier = Modifier) {
 
         Box(contentAlignment = Alignment.Center,
             modifier = Modifier.weight(1f)) {
-            MyButton(
+            CoffeeButton(
                 text = "Continue",
                 suffixIcon = R.drawable.ic_arrow_right
             )
         }
     }
 }
+
 
 
 @Composable

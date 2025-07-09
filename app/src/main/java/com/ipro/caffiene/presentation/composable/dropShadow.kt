@@ -1,6 +1,7 @@
 package com.ipro.caffiene.presentation.composable
 
 import android.graphics.BlurMaskFilter
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Stable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
@@ -43,3 +44,11 @@ fun Modifier.dropShadow(
         }
     }
 }
+
+data class DropShadow(
+    val color: Color,
+    val blur: Dp = 0.dp,
+    val offsetX: Dp = 0.dp,
+    val offsetY: Dp = 0.dp,
+    val shape: Shape = CircleShape,
+)

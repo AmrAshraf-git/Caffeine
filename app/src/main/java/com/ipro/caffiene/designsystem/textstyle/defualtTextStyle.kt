@@ -53,12 +53,12 @@ val defaultTextStyle: CaffeineTextStyle = CaffeineTextStyle(
         ), medium = TextStyle(
             fontSize = 18.sp,
             fontWeight = FontWeight.SemiBold,
-            fontFamily = sniglet,
+            fontFamily = urbanist,
             lineHeight = 28.sp,
         ), small = TextStyle(
             fontSize = 16.sp,
             fontWeight = FontWeight.SemiBold,
-            fontFamily = sniglet,
+            fontFamily = urbanist,
             lineHeight = 24.sp,
         )
     ), body = SizedTextStyle(

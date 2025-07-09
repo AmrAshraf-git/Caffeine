@@ -22,7 +22,7 @@ import com.ipro.caffiene.designsystem.theme.CaffeineTheme
 import com.ipro.caffiene.designsystem.theme.Theme
 
 @Composable
-fun MyButton(text: String, suffixIcon: Int, onClick: () -> Unit = {}) {
+fun CoffeeButton(text: String, suffixIcon: Int, onClick: () -> Unit = {}) {
     Row(
         horizontalArrangement = Arrangement.spacedBy(8.dp, alignment = Alignment.CenterHorizontally),
         verticalAlignment = Alignment.CenterVertically,
@@ -49,13 +49,13 @@ fun MyButton(text: String, suffixIcon: Int, onClick: () -> Unit = {}) {
 @Composable
 fun ButtonDarkModePreview() {
     CaffeineTheme {
-        MyButton(text = "bring my coffee", suffixIcon = R.drawable.ic_coffee)
+        CoffeeButton(text = "bring my coffee", suffixIcon = R.drawable.ic_coffee)
     }
 }
 @Preview(name = "Light Theme", showBackground = true, uiMode = android.content.res.Configuration.UI_MODE_NIGHT_NO)
 @Composable
 fun ButtonLightModePreview() {
     CaffeineTheme {
-        MyButton(text = "bring my coffee", suffixIcon = R.drawable.ic_coffee)
+        CoffeeButton(text = "bring my coffee", suffixIcon = R.drawable.ic_coffee)
     }
 }

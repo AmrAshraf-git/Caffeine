@@ -36,7 +36,7 @@ import com.ipro.caffiene.R
 import com.ipro.caffiene.designsystem.theme.CaffeineTheme
 import com.ipro.caffiene.designsystem.theme.Theme
 import com.ipro.caffiene.presentation.composable.MyAppBar
-import com.ipro.caffiene.presentation.composable.MyButton
+import com.ipro.caffiene.presentation.composable.CoffeeButton
 import com.ipro.caffiene.presentation.model.Coffee
 import kotlinx.coroutines.launch
 import kotlin.math.absoluteValue
@@ -107,7 +107,7 @@ fun CoffeeTypeContent(coffeeList: List<Coffee>) {
 
         Box(contentAlignment = Alignment.Center,
             modifier = Modifier.weight(1f)) {
-            MyButton(
+            CoffeeButton(
                 text = "Continue",
                 suffixIcon = R.drawable.ic_arrow_right
             )

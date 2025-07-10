@@ -1,14 +1,19 @@
 package com.ipro.caffiene.navigation
 
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import com.ipro.caffiene.presentation.screen.CoffeeIsReadyScreen
-import com.ipro.caffiene.presentation.screen.CoffeeLoadingScreen
-import com.ipro.caffiene.presentation.screen.CoffeeSizeScreen
-import com.ipro.caffiene.presentation.screen.CoffeeTypeScreen
-import com.ipro.caffiene.presentation.screen.HomeScreen
+import com.ipro.caffiene.navigation.route.coffeeIsReadyScreenRoute
+import com.ipro.caffiene.navigation.route.coffeeLoadingScreenRoute
+import com.ipro.caffiene.navigation.route.coffeeSizeScreenRoute
+import com.ipro.caffiene.navigation.route.coffeeTypeScreenRoute
+import com.ipro.caffiene.navigation.route.homeScreenRoute
+
 
 
 @Composable
@@ -17,32 +22,40 @@ fun CaffeineNavGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = Destination.Home.route
+        startDestination = Destination.Home.route,
+        enterTransition = {
+            fadeIn(animationSpec = tween(700)) + // 0.7 second fade
+                    slideInHorizontally(
+                        animationSpec = tween(700),
+                        initialOffsetX = { width -> width }
+                    )
+        },
+        exitTransition = {
+            fadeOut(animationSpec = tween(700)) +
+                    slideOutHorizontally(
+                        animationSpec = tween(700),
+                        targetOffsetX = { width -> -width / 3 }
+                    )
+        },
+        popEnterTransition = {
+            fadeIn(animationSpec = tween(700)) +
+                    slideInHorizontally(
+                        animationSpec = tween(700),
+                        initialOffsetX = { width -> -width / 3 }
+                    )
+        },
+        popExitTransition = {
+            fadeOut(animationSpec = tween(700)) +
+                    slideOutHorizontally(
+                        animationSpec = tween(700),
+                        targetOffsetX = { width -> width }
+                    )
+        }
     ) {
-        composable(Destination.Home.route) {
-            HomeScreen(
-                onBringMyCoffeeClick = { navController.navigate(Destination.CoffeeType.route) }
-            )
-        }
-        composable(Destination.CoffeeType.route) {
-            CoffeeTypeScreen(
-                onContinueClick = { navController.navigate(Destination.CoffeeSize.route) }
-            )
-        }
-        composable(Destination.CoffeeSize.route) {
-            CoffeeSizeScreen(
-                onContinueClick = { navController.navigate(Destination.CoffeeLoading.route) }
-            )
-        }
-        composable(Destination.CoffeeLoading.route) {
-            CoffeeLoadingScreen(
-                onLoadingFinished = { navController.navigate(Destination.CoffeeIsReady.route) }
-            )
-        }
-        composable(Destination.CoffeeIsReady.route) {
-            CoffeeIsReadyScreen(
-
-            )
-        }
+        homeScreenRoute(navController)
+        coffeeTypeScreenRoute(navController)
+        coffeeSizeScreenRoute(navController)
+        coffeeLoadingScreenRoute(navController)
+        coffeeIsReadyScreenRoute(navController)
     }
 }

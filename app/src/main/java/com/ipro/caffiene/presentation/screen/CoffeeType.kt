@@ -19,13 +19,13 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -33,7 +33,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.util.lerp
-import androidx.navigation.NavController
 import com.ipro.caffiene.R
 import com.ipro.caffiene.designsystem.theme.CaffeineTheme
 import com.ipro.caffiene.designsystem.theme.Theme
@@ -46,7 +45,7 @@ import kotlin.math.absoluteValue
 @Composable
 fun CoffeeTypeScreen(
     modifier: Modifier = Modifier,
-    onContinueClick: () -> Unit = {}
+    onContinueClick: (coffeeType: String) -> Unit = {}
 ) {
     val demoCoffees = listOf(
         Coffee("Latte", R.drawable.coffee_latte),
@@ -65,7 +64,7 @@ fun CoffeeTypeScreen(
 @Composable
 fun CoffeeTypeContent(
     modifier: Modifier = Modifier,
-    onContinueClick: () -> Unit = {},
+    onContinueClick: (coffeeType: String) -> Unit = {},
     coffeeList: List<Coffee>) {
     val coroutineScope = rememberCoroutineScope()
     val configuration = LocalConfiguration.current
@@ -75,7 +74,7 @@ fun CoffeeTypeContent(
     val isLandscape = configuration.orientation == android.content.res.Configuration.ORIENTATION_LANDSCAPE
     val paddingVal = if(isLandscape) {(screenWidth * 0.35).dp} else (screenWidth*0.25).dp
     val pagerState = rememberPagerState(initialPage = 0, pageCount = { coffeeList.size })
-
+    val selectedCoffee = remember { mutableStateOf("Latte") }
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -114,6 +113,8 @@ fun CoffeeTypeContent(
                     }
                 }
             )
+            selectedCoffee.value = coffeeList[pagerState.currentPage].name
+
         }
 
         Box(contentAlignment = Alignment.Center,
@@ -121,7 +122,7 @@ fun CoffeeTypeContent(
             CoffeeButton(
                 text = "Continue",
                 suffixIcon = R.drawable.ic_arrow_right,
-                onClick = onContinueClick
+                onClick = { onContinueClick(selectedCoffee.value) }
             )
         }
     }

@@ -28,14 +28,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import com.ipro.caffiene.R
 import com.ipro.caffiene.designsystem.theme.Theme
 import com.ipro.caffiene.presentation.composable.DetailsAppBar
@@ -44,25 +42,27 @@ import kotlinx.coroutines.delay
 @Composable
 fun CoffeeLoadingScreen(
     modifier: Modifier = Modifier,
-    onLoadingFinished: () -> Unit = {}
-
+    onLoadingFinished: () -> Unit = {},
+    coffeeName: String = "Coffee Type"
     ) {
+
+    LaunchedEffect(Unit) {
+        delay(2000)
+        onLoadingFinished()
+    }
 
     CoffeeLoadingContent(
         modifier = modifier,
-        onLoadingFinished = onLoadingFinished
+        onLoadingFinished = onLoadingFinished,
+        coffeeName = coffeeName
     )
 }
 
 @Composable
 fun CoffeeLoadingContent(
     modifier: Modifier = Modifier,
-    onLoadingFinished: () -> Unit = {}) {
-
-    LaunchedEffect(Unit) {
-        delay(2000)
-        onLoadingFinished()
-    }
+    onLoadingFinished: () -> Unit = {},
+    coffeeName: String = "Coffee Type") {
 
     Column(
         modifier = Modifier
@@ -72,7 +72,7 @@ fun CoffeeLoadingContent(
     ) {
 
         Box(modifier = Modifier.padding(horizontal = 16.dp,),) {
-            DetailsAppBar(iconRes = R.drawable.ic_arrow_left, title = "Macchiato")
+            DetailsAppBar(iconRes = R.drawable.ic_arrow_left, title = coffeeName)
         }
 
         Box(

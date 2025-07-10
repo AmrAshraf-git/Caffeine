@@ -24,7 +24,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -33,7 +32,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import com.ipro.caffiene.R
 import com.ipro.caffiene.designsystem.theme.Theme
 import com.ipro.caffiene.presentation.composable.CoffeeButton
@@ -65,7 +63,11 @@ fun CoffeeIsReadyContent() {
             .statusBarsPadding()
             .fillMaxSize(),) {
 
-        DetailsAppBar(iconRes = R.drawable.ic_cancle, isTitled = false)
+        Box(modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp)) {
+            DetailsAppBar(iconRes = R.drawable.ic_cancle, isTitled = false)
+        }
 
         Spacer(Modifier.height(16.dp))
 
@@ -106,10 +108,12 @@ fun CoffeeIsReadyContent() {
 
         Box(contentAlignment = Alignment.Center,
             modifier = Modifier.weight(1f)) {
-            CoffeeButton(
-                text = "Tack Snack",
-                suffixIcon = R.drawable.ic_arrow_right
-            )
+            AnimatedBottomButton {
+                CoffeeButton(
+                    text = "Tack Snack",
+                    suffixIcon = R.drawable.ic_arrow_right
+                )
+            }
         }
 
 
@@ -142,62 +146,7 @@ fun CupCoffeeReady(modifier: Modifier = Modifier) {
 
 
 
-//@Composable
-//fun AnimatedCupLid(
-//    modifier: Modifier = Modifier,
-//    targetLidTopY: Dp,          // Where the lid should "land" (distance from Box top)
-//    cupLidRes: Int,             // cup_lid drawable resource ID
-//    delayMillis: Int = 400,     // Optional: to control animation start
-//    fallDuration: Int = 850     // Optional: control fall speed
-//) {
-//    val density = LocalDensity.current
-//    val targetLidTopYPx = with(density) { targetLidTopY.toPx() }
-//    val screenHeightPx = with(density) { 600.dp.toPx() } // Large enough to ensure "off-screen"
-//
-//    val lidY = remember { Animatable(-screenHeightPx) }
-//    val alpha = remember { Animatable(0f) }
-//
-//    LaunchedEffect(Unit) {
-//        // Snap to initial values
-//        lidY.snapTo(-screenHeightPx)
-//        alpha.snapTo(0f)
-//
-//        // Optional: small delay before showing
-//        delay(delayMillis.toLong())
-//
-//        // Animate alpha in (fade) a little before "fall"
-//        launch {
-//            alpha.animateTo(1f, animationSpec = tween(durationMillis = 200))
-//        }
-//
-//        // Animate the lid drop
-//        lidY.animateTo(
-//            targetValue = targetLidTopYPx,
-//            animationSpec = tween(fallDuration, easing = FastOutSlowInEasing),
-//        )
-//    }
-//
-//    if (alpha.value > 0.01f) {
-//        Box(
-//            modifier = modifier.fillMaxWidth(),
-//            contentAlignment = Alignment.TopCenter
-//        ) {
-//            Image(
-//                painter = painterResource(cupLidRes),
-//                contentDescription = null,
-//                modifier = Modifier
-//                    .graphicsLayer(
-//                        translationY = lidY.value,
-//                        alpha = alpha.value
-//                    )
-//                    .width(280.dp)
-//                    .height(69.dp),
-//                alignment = Alignment.TopCenter,
-//                contentScale = androidx.compose.ui.layout.ContentScale.FillWidth
-//            )
-//        }
-//    }
-//}
+
 
 @Composable
 fun AnimatedReadySection(progress: Float) {

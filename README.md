@@ -25,15 +25,12 @@ This is a small, just-for-fun Android app exploring Jetpack Compose's UI animati
 - 🤹‍♂️ **Just for Fun!**  
   Caffeine is a playful demo project and not intended for production or real-world orders (unless you want to hack it further!).
 
+
+
 ---
 
 ## Screenshots / Demo
-
-
-![CaffeineApp_](https://github.com/user-attachments/assets/4f0fb01e-c650-4c6a-9ef7-178304beb43a)
-
-
-
+[CaffeineApp_](https://github.com/user-attachments/assets/5a23d853-9ede-425b-9be9-b58c505b2b1a)
 
 
 ---

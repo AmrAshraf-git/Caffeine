@@ -27,13 +27,24 @@ This is a small, just-for-fun Android app exploring Jetpack Compose's UI animati
 
 ---
 
+## Screenshots / Demo
+
+
+![CaffeineApp_](https://github.com/user-attachments/assets/4f0fb01e-c650-4c6a-9ef7-178304beb43a)
+
+
+
+
+
+---
+
 ## Technical
 
 	| Tech                        | Description                 |
 	| --------------------------- | --------------------------- |
 	| 🧠 Kotlin                   | Modern programming language |
 	| 🧩 Jetpack Compose          | Declarative UI toolkit      |
-	| 🛰️ Koin		              | Dependancy Injection              |
+	| 🛰️ Koin		      | Dependancy Injection              |
 
 
 

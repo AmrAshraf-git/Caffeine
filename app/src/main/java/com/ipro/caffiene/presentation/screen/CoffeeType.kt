@@ -25,6 +25,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -32,6 +33,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.util.lerp
+import androidx.navigation.NavController
 import com.ipro.caffiene.R
 import com.ipro.caffiene.designsystem.theme.CaffeineTheme
 import com.ipro.caffiene.designsystem.theme.Theme
@@ -42,7 +44,10 @@ import kotlinx.coroutines.launch
 import kotlin.math.absoluteValue
 
 @Composable
-fun CoffeeTypeScreen() {
+fun CoffeeTypeScreen(
+    modifier: Modifier = Modifier,
+    onContinueClick: () -> Unit = {}
+) {
     val demoCoffees = listOf(
         Coffee("Latte", R.drawable.coffee_latte),
         Coffee("Black", R.drawable.coffee_black),
@@ -50,12 +55,18 @@ fun CoffeeTypeScreen() {
         Coffee("Espresso", R.drawable.coffee_espresso),
     )
 
-    CoffeeTypeContent(demoCoffees)
+    CoffeeTypeContent(
+        modifier = modifier,
+        coffeeList = demoCoffees,
+        onContinueClick = onContinueClick)
 }
 
 @SuppressLint("ConfigurationScreenWidthHeight")
 @Composable
-fun CoffeeTypeContent(coffeeList: List<Coffee>) {
+fun CoffeeTypeContent(
+    modifier: Modifier = Modifier,
+    onContinueClick: () -> Unit = {},
+    coffeeList: List<Coffee>) {
     val coroutineScope = rememberCoroutineScope()
     val configuration = LocalConfiguration.current
     val screenWidth = configuration.screenWidthDp
@@ -109,7 +120,8 @@ fun CoffeeTypeContent(coffeeList: List<Coffee>) {
             modifier = Modifier.weight(1f)) {
             CoffeeButton(
                 text = "Continue",
-                suffixIcon = R.drawable.ic_arrow_right
+                suffixIcon = R.drawable.ic_arrow_right,
+                onClick = onContinueClick
             )
         }
     }
@@ -123,7 +135,7 @@ fun Title() {
         color = Theme.color.textColors.headline
     )
     Text(
-        "Hamsa ☀",
+        "Amr ☀",
         style = Theme.textStyle.title.large.copy(fontSize = 36.sp),
         color = Theme.color.textColors.title
     )
@@ -194,6 +206,7 @@ fun CoffeeTypeScreenPreview() {
         )
 
     CaffeineTheme {
-        CoffeeTypeContent(demoCoffees)
+        CoffeeTypeScreen(
+           )
     }
 }

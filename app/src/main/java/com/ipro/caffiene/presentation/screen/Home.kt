@@ -26,6 +26,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
@@ -33,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.lerp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.util.lerp
+import androidx.navigation.NavController
 import com.ipro.caffiene.R
 import com.ipro.caffiene.designsystem.theme.CaffeineTheme
 import com.ipro.caffiene.designsystem.theme.Theme
@@ -40,12 +42,19 @@ import com.ipro.caffiene.presentation.composable.CoffeeButton
 import com.ipro.caffiene.presentation.composable.MyAppBar
 
 @Composable
-fun HomeScreen() {
-    AnimatedGhostWithSparkles()
+fun HomeScreen(
+    onBringMyCoffeeClick: () -> Unit = {},
+) {
+    HomeScreenContent(
+        onBringMyCoffeeClick = onBringMyCoffeeClick
+    )
 }
 
 @Composable
-fun AnimatedGhostWithSparkles() {
+fun HomeScreenContent(
+    modifier: Modifier = Modifier,
+    onBringMyCoffeeClick: () -> Unit = {},
+) {
     val infiniteTransition = rememberInfiniteTransition(label = "ghostFloat")
 
     val animationProgress by infiniteTransition.animateFloat(
@@ -116,7 +125,9 @@ fun AnimatedGhostWithSparkles() {
                 .fillMaxWidth()
                 .weight(1f)
                 .padding(bottom = 50.dp)) {
-            CoffeeButton(text = "bring my coffee", suffixIcon = R.drawable.ic_coffee)
+            CoffeeButton(text = "bring my coffee", suffixIcon = R.drawable.ic_coffee,
+                onClick =  onBringMyCoffeeClick,
+            )
         }
 
     }
@@ -171,6 +182,7 @@ fun Sparkle(modifier: Modifier = Modifier, offsetX: Dp, offsetY: Dp, alpha: Floa
 @Composable
 fun HomeScreenPreview() {
     CaffeineTheme {
-        HomeScreen()
+        HomeScreen(
+        )
     }
 }

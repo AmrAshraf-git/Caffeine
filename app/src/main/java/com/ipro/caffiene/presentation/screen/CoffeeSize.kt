@@ -36,17 +36,25 @@ import com.ipro.caffiene.presentation.composable.CoffeeSlider
 import androidx.compose.animation.core.Animatable
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.*
+import androidx.navigation.NavController
 
 @Composable
-fun CoffeeSizeScreen(modifier: Modifier = Modifier) {
+fun CoffeeSizeScreen(
+    modifier: Modifier = Modifier,
+    onContinueClick: () -> Unit = {}
+    ) {
 
-    CoffeeSizeContent()
+    CoffeeSizeContent(
+        modifier=modifier,
+        onContinueClick = onContinueClick)
 }
 
 @Composable
-fun CoffeeSizeContent(modifier: Modifier = Modifier) {
+fun CoffeeSizeContent(modifier: Modifier = Modifier,
+                      onContinueClick: () -> Unit = {}) {
     val textOptions = listOf(
         SizeOption.TextOption("S"),
         SizeOption.TextOption("M"),
@@ -161,7 +169,8 @@ fun CoffeeSizeContent(modifier: Modifier = Modifier) {
             modifier = Modifier.weight(1f)) {
             CoffeeButton(
                 text = "Continue",
-                suffixIcon = R.drawable.ic_arrow_right
+                suffixIcon = R.drawable.ic_arrow_right,
+                onClick = onContinueClick
             )
         }
     }
@@ -221,5 +230,6 @@ fun AnimatedCoffeeBeans(
 @Composable
 @Preview(showBackground = true, widthDp = 360, heightDp = 800)
 fun CoffeeSizeScreenPreview() {
-    CoffeeSizeScreen()
+    CoffeeSizeScreen(
+    )
 }

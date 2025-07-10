@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -32,6 +33,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.ipro.caffiene.R
 import com.ipro.caffiene.designsystem.theme.Theme
 import com.ipro.caffiene.presentation.composable.CoffeeButton
@@ -41,7 +43,9 @@ import com.ipro.caffiene.presentation.composable.DetailsAppBar
 
 
 @Composable
-fun CoffeeIsReadyScreen(modifier: Modifier = Modifier) {
+fun CoffeeIsReadyScreen(
+    modifier: Modifier = Modifier,
+    ) {
     CoffeeIsReadyContent()
 
 }
@@ -236,5 +240,6 @@ fun AnimatedCupLidWithProgress(progress: Float, targetLidTopY: Dp, cupLidRes: In
 @Composable
 @Preview(showBackground = true, widthDp = 360, heightDp = 800)
 fun CoffeeIsReadyScreenPreview() {
-    CoffeeIsReadyScreen()
+    CoffeeIsReadyScreen(
+    )
 }

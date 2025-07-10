@@ -28,24 +28,41 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.ipro.caffiene.R
 import com.ipro.caffiene.designsystem.theme.Theme
 import com.ipro.caffiene.presentation.composable.DetailsAppBar
+import kotlinx.coroutines.delay
 
 @Composable
-fun CoffeeLoadingScreen(modifier: Modifier = Modifier) {
+fun CoffeeLoadingScreen(
+    modifier: Modifier = Modifier,
+    onLoadingFinished: () -> Unit = {}
 
-    CoffeeLoadingContent()
+    ) {
+
+    CoffeeLoadingContent(
+        modifier = modifier,
+        onLoadingFinished = onLoadingFinished
+    )
 }
 
 @Composable
-fun CoffeeLoadingContent(modifier: Modifier = Modifier) {
+fun CoffeeLoadingContent(
+    modifier: Modifier = Modifier,
+    onLoadingFinished: () -> Unit = {}) {
+
+    LaunchedEffect(Unit) {
+        delay(2000)
+        onLoadingFinished()
+    }
 
     Column(
         modifier = Modifier
@@ -212,5 +229,6 @@ fun SimpleLoadingBarReveal(
 @Composable
 @Preview(showBackground = true, backgroundColor = 0xFFFFFFFF, widthDp = 360, heightDp = 800)
 fun CoffeeLoadingScreenPreview() {
-    CoffeeLoadingScreen()
+    CoffeeLoadingScreen(
+    )
 }

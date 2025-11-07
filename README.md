@@ -11,7 +11,7 @@ This is a small, just-for-fun Android app exploring Jetpack Compose's UI animati
 
 ## Features
 
-- 🎨 **Beautiful Animation**:  
+- 🎨 **Beautiful Trendy Animation**:  
   - Animated transitions between screens (slide & fade)
   - Falling coffee beans effect as you select roasts
   - Buttons & AppBar slide in dynamically for extra polish
@@ -29,19 +29,18 @@ This is a small, just-for-fun Android app exploring Jetpack Compose's UI animati
 
 ---
 
-## Screenshots / Demo
-[CaffeineApp_](https://github.com/user-attachments/assets/5a23d853-9ede-425b-9be9-b58c505b2b1a)
+## GIF
+<img src="https://github.com/user-attachments/assets/5a23d853-9ede-425b-9be9-b58c505b2b1a" alt="CaffeineApp" width="150"/>
 
 
 ---
 
 ## Technical
-
-	| Tech                        | Description                 |
-	| --------------------------- | --------------------------- |
-	| 🧠 Kotlin                   | Modern programming language |
-	| 🧩 Jetpack Compose          | Declarative UI toolkit      |
-	| 🛰️ Koin		      | Dependancy Injection              |
+| Tech                        | Description                 |
+| --------------------------- | --------------------------- |
+| 🧠 Kotlin                   | Modern programming language |
+| 🧩 Jetpack Compose          | Declarative UI toolkit      |
+| 🛰️ Koin		      | Dependancy Injection              |
 
 
 
